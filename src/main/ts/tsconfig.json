@@ -1,0 +1,30 @@
+{
+    "version": "next",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "outDir": "./../../../lib"
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "./**/*.tsx",
+        "./../../../typings/references.d.ts",
+        "!./node_modules/**/*"
+    ],
+    "files": [
+        "./ManagedCommonReferencePlugin.ts",
+        "./index.ts",
+        "./../../../typings/references.d.ts"
+    ]
+}
