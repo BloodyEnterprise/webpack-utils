@@ -5,10 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "preversion": "npm run lib",
-    "version": "git add ./package.json && git add ./npm-shrinkwrap.json && git commit && git flow release start",
-    "postversion": "git flow release publish",
     "prepublish": "npm run lib",
-    "postpublish": "git flow release finish && git push --tags",
     "lib": "./node_modules/.bin/tsc -p ./src/main/ts",
     "tsd": "./node_modules/.bin/tsd install --config ./.config/tsd.json"
   },
