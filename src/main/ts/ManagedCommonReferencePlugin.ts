@@ -15,7 +15,7 @@ interface IManagedCommonReferenceOptions {
     manifest: ILibraryManifest;
 }
 
-export default class ManagedCommonReferencePlugin {
+export class ManagedCommonReferencePlugin {
     private manifest: ILibraryManifest;
 
     constructor(options: IManagedCommonReferenceOptions) {
@@ -24,16 +24,17 @@ export default class ManagedCommonReferencePlugin {
 
     apply(compiler) {
         const source = `managed-common-reference ${this.manifest.name}`;
+        const context = compiler.context;
 
-        compiler.apply(new ExternalsPlugin("var", { [source]: this.manifest.name }));
+        compiler.apply(new ExternalsPlugin(this.manifest.type, { [source]: this.manifest.name }));
 
         compiler.plugin("compilation", (compilation, params) => {
             compilation.dependencyFactories.set(DelegatedSourceDependency, params.normalModuleFactory);
         });
 
-        compiler.plugin("normal-module-factory", (normalModuleFactory) => {
-            normalModuleFactory.plugin("create-module", (result) => {
-                const resolvedRequest = `./${relative(__dirname, result.request) }`;
+        compiler.plugin("normal-module-factory", normalModuleFactory => {
+            normalModuleFactory.plugin("create-module", result => {
+                const resolvedRequest = `./${relative(context, result.request) }`;
                 if (resolvedRequest in this.manifest.content) {
                     return new DelegatedModule(
                         source,
