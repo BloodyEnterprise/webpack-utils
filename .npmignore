@@ -1,4 +1,6 @@
-/src
-/.config
-/typings
-/node_modules
+src/
+.config/
+typings/
+node_modules/
+npm-debug.log
+.npmignore
