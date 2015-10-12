@@ -23,8 +23,9 @@
         "!./node_modules/**/*"
     ],
     "files": [
-        "./ManagedCommonReferencePlugin.ts",
-        "./index.ts",
-        "./../../../typings/references.d.ts"
-    ]
+        "index.ts",
+        "ManagedCommonReferencePlugin.ts",
+        "../../../typings/references.d.ts"
+    ],
+    "exclude": []
 }
